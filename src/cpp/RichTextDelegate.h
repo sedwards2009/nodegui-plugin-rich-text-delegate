@@ -4,7 +4,7 @@
 #include <QTextDocument>
 
 
-class DLL_EXPORT RichTextDelegate : public QStyledItemDelegate {
+class RichTextDelegate : public QStyledItemDelegate {
  public:
   using QStyledItemDelegate::QStyledItemDelegate;
 

@@ -8,7 +8,7 @@
 #include "QtWidgets/QAbstractItemDelegate/qabstractitemdelegate_macro.h"
 #include "RichTextDelegate.h"
 
-class DLL_EXPORT RichTextDelegateWrap : public Napi::ObjectWrap<RichTextDelegateWrap> {
+class RichTextDelegateWrap : public Napi::ObjectWrap<RichTextDelegateWrap> {
   QABSTRACTITEMDELEGATE_WRAPPED_METHODS_DECLARATION
  private:
   QPointer<RichTextDelegate> instance;
