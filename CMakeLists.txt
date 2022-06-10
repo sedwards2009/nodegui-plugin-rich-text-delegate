@@ -18,6 +18,8 @@ add_library(${PLUGIN_ADDON_NAME} SHARED
     "${PROJECT_SOURCE_DIR}/src/cpp/main.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/RichTextDelegate.cpp"
     "${PROJECT_SOURCE_DIR}/src/cpp/RichTextDelegateWrap.cpp"
+    "${PROJECT_SOURCE_DIR}/src/cpp/TurboTextDelegate.cpp"
+    "${PROJECT_SOURCE_DIR}/src/cpp/TurboTextDelegateWrap.cpp"
 )
 
 AddPluginConfig(${PLUGIN_ADDON_NAME})
