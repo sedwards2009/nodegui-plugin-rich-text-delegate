@@ -1,6 +1,6 @@
 {
     "name": "nodegui-plugin-rich-text-delegate",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "A QItemDelegate subclass for rendering rich text in NodeGui",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
@@ -22,6 +22,10 @@
         "dist/index.js",
         "dist/addon.d.ts",
         "dist/index.d.ts",
+        "dist/RichTextDelegate.d.ts",
+        "dist/RichTextDelegate.js",
+        "dist/TurboTextDelegate.d.ts",
+        "dist/TurboTextDelegate.js",
         "scripts/setupBinary.js",
         "README.md",
         "CMakeLists.txt"
