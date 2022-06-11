@@ -1,6 +1,6 @@
 {
     "name": "nodegui-plugin-rich-text-delegate",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "A QItemDelegate subclass for rendering rich text in NodeGui",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
