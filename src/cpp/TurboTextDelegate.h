@@ -36,12 +36,13 @@ class TurboTextDelegate : public QStyledItemDelegate {
   ~TurboTextDelegate();
 
   void setFont(int slot, QFont &font);
-  void setColor(int slot, QColor &color);
+  void setColor(int slot, QColor &color, QColor &colorSelected);
 
  protected:
   void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const;
  private:
   QVector<QColor> m_colorSlots;
+  QVector<QColor> m_colorSelectedSlots;
   QVector<QFont> m_fontSlots;
   void viewItemDrawText(QStyle* style, QPainter *p, const QStyleOptionViewItem *option, const QRect &rect) const;
 };

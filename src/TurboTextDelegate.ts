@@ -111,8 +111,9 @@ export class TurboTextDelegate extends QAbstractItemDelegate {
         super(native);
     }
 
-    setColor(slot: ColorSlot, color: QColor): void {
-        this.native.setColor(slot.codePointAt(0), color.native);
+    setColor(slot: ColorSlot, color: QColor, colorSelected?: QColor): void {
+        this.native.setColor(slot.codePointAt(0), color.native,
+            colorSelected === undefined ? color.native : colorSelected.native);
     }
 
     setFont(slot: FontSlot, font: QFont): void {

@@ -21,7 +21,8 @@ inline bool isCommand(const QChar c) {
 
 TurboTextDelegate::TurboTextDelegate(QObject* parent) : QStyledItemDelegate(parent),
     m_fontSlots(FontSlotDefault - FontSlotBase),
-    m_colorSlots(ColorSlotDefault - ColorSlotBase) {}
+    m_colorSlots(ColorSlotDefault - ColorSlotBase),
+    m_colorSelectedSlots(ColorSlotDefault - ColorSlotBase) {}
 
 TurboTextDelegate::~TurboTextDelegate() {
 }
@@ -30,8 +31,9 @@ void TurboTextDelegate::setFont(int slot, QFont &font) {
   m_fontSlots[slot - FontSlotBase] = font;
 }
 
-void TurboTextDelegate::setColor(int slot, QColor &color) {
+void TurboTextDelegate::setColor(int slot, QColor &color, QColor &colorSelected) {
   m_colorSlots[slot - ColorSlotBase] = color;
+  m_colorSelectedSlots[slot - ColorSlotBase] = colorSelected;
 }
 
 void TurboTextDelegate::paint(QPainter *painter, const QStyleOptionViewItem &inOption,
@@ -67,7 +69,9 @@ void TurboTextDelegate::paint(QPainter *painter, const QStyleOptionViewItem &inO
   if (cg == QPalette::Normal && !(option.state & QStyle::State_Active)) {
       cg = QPalette::Inactive;
   }
-  QColor defaultColor = QColor(option.palette.color(cg, option.state & QStyle::State_Selected ? QPalette::HighlightedText : QPalette::Text));
+  const bool isSelected = option.state & QStyle::State_Selected;
+  QPalette::ColorRole colorRole = isSelected ? QPalette::HighlightedText : QPalette::Text;
+  QColor defaultColor = QColor(option.palette.color(cg, colorRole));
   painter->setPen(defaultColor);
 
   const QWidget *widget = option.widget;
@@ -107,7 +111,11 @@ void TurboTextDelegate::paint(QPainter *painter, const QStyleOptionViewItem &inO
         if (c == ColorSlotDefault) {
           painter->setPen(defaultColor);
         } else {
-          painter->setPen(m_colorSlots.at(c.unicode() - ColorSlotBase));
+          if (isSelected) {
+            painter->setPen(m_colorSelectedSlots.at(c.unicode() - ColorSlotBase));
+          } else {
+            painter->setPen(m_colorSlots.at(c.unicode() - ColorSlotBase));
+          }
         }
       } else if (isCommand(c)) {
         QFont newFont = painter->font();

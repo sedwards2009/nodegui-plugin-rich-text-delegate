@@ -53,8 +53,9 @@ TurboTextDelegateWrap::TurboTextDelegateWrap(const Napi::CallbackInfo& info)
 Napi::Value TurboTextDelegateWrap::setColor(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   int slot = info[0].As<Napi::Number>().Int32Value();
-  QColor* color =Napi::ObjectWrap<QColorWrap>::Unwrap(info[1].As<Napi::Object>())->getInternalInstance();
-  this->instance->setColor(slot, *color);
+  QColor* color = Napi::ObjectWrap<QColorWrap>::Unwrap(info[1].As<Napi::Object>())->getInternalInstance();
+  QColor* colorSelected = Napi::ObjectWrap<QColorWrap>::Unwrap(info[2].As<Napi::Object>())->getInternalInstance();
+  this->instance->setColor(slot, *color, *colorSelected);
   return env.Null();
 }
 
