@@ -8,15 +8,15 @@
 
 
 inline bool isFontSlot(const QChar c) {
-  return c >= FontSlotBase && c <= FontSlotDefault;
+  return c.unicode() >= FontSlotBase && c.unicode() <= FontSlotDefault;
 }
 
 inline bool isColorSlot(const QChar c) {
-  return c >= ColorSlotBase && c <= ColorSlotDefault;
+  return c.unicode() >= ColorSlotBase && c.unicode() <= ColorSlotDefault;
 }
 
 inline bool isCommand(const QChar c) {
-  return c >= FirstCommand && c <= LastCommand;
+  return c.unicode() >= FirstCommand && c.unicode() <= LastCommand;
 }
 
 TurboTextDelegate::TurboTextDelegate(QObject* parent) : QStyledItemDelegate(parent),
@@ -102,13 +102,13 @@ void TurboTextDelegate::paint(QPainter *painter, const QStyleOptionViewItem &inO
       rangeStart = i + 1;
 
       if (isFontSlot(c)) {
-        if (c == FontSlotDefault) {
+        if (c.unicode() == FontSlotDefault) {
           painter->setFont(defaultFont);
         } else {
           painter->setFont(m_fontSlots.at(c.unicode() - FontSlotBase));
         }
       } else if (isColorSlot(c)) {
-        if (c == ColorSlotDefault) {
+        if (c.unicode() == ColorSlotDefault) {
           painter->setPen(defaultColor);
         } else {
           if (isSelected) {
