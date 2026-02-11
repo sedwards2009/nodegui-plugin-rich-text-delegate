@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.5)
 # -------------- Plugin Config ---------------
 execute_process(COMMAND node -p "require('@nodegui/nodegui/plugin').CMAKE_HELPER_FILE"
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
@@ -30,13 +30,13 @@ if (UNIX AND NOT APPLE)
 
     # NodeGui and qode are assumed to be in the same node_modules directory as nodegui-plugin-rich-text-delegate.
     set_target_properties(${PLUGIN_ADDON_NAME} PROPERTIES
-        INSTALL_RPATH "\$ORIGIN/../../../@nodegui/nodegui/miniqt/6.4.1/gcc_64/lib:\$ORIGIN/../../../@nodegui/nodegui/build/Release")
+        INSTALL_RPATH "\$ORIGIN/../../../@nodegui/nodegui/miniqt/6.10.2/gcc_64/lib:\$ORIGIN/../../../@nodegui/nodegui/build/Release")
     set_target_properties(${PLUGIN_ADDON_NAME} PROPERTIES BUILD_WITH_INSTALL_RPATH TRUE)
 endif()
 
 if (APPLE)
     set_target_properties(${PLUGIN_ADDON_NAME} PROPERTIES
-        INSTALL_RPATH "@loader_path/../../../@nodegui/nodegui/miniqt/6.4.1/macos/lib:@loader_path/../../../@nodegui/nodegui/build/Release")
+        INSTALL_RPATH "@loader_path/../../../@nodegui/nodegui/miniqt/6.10.2/macos/lib:@loader_path/../../../@nodegui/nodegui/build/Release")
     set_target_properties(${PLUGIN_ADDON_NAME} PROPERTIES SKIP_BUILD_RPATH FALSE)
     set_target_properties(${PLUGIN_ADDON_NAME} PROPERTIES BUILD_WITH_INSTALL_RPATH TRUE)
 endif()
